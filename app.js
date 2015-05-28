@@ -7,8 +7,12 @@ var body = "Morning all! \r\n\n" +
 		   "Today you must try and reach " + puzzle.target + " with the numbers " + puzzle.numbers + ". \r\n\n" +
 		   "Best of luck!";
 
+var receivers = require('./ReceiversRepo.js').getAll().receivers;
+
 // Send the email
 var Mailer = require('./Emailer.js');
 var mailer = new Mailer("username", "password");
 
-mailer.sendMessage(subject, body);
+receivers.forEach(function(receiver) {
+	mailer.sendMessage(subject, body, receiver);
+});

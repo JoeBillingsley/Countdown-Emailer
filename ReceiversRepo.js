@@ -2,9 +2,9 @@ _fs = require('fs');
 
 module.exports = {
 	getAll : function() {
-		var filename = "./receivers.txt";
-		var receivers = _fs.readFileSync(filename, "utf8");
+		var filename = "./receivers.json";
+		var file = _fs.readFileSync(filename, "utf8");
 		
-		return receivers;
+		return JSON.parse(file);
 	}
 }

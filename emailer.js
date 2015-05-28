@@ -13,12 +13,10 @@ function Emailer(sender, password) {
 	});
 }
 
-Emailer.prototype.sendMessage = function (subject, text) {
-	var _receivers = require('./ReceiversRepo.js').getAll();
-	
+Emailer.prototype.sendMessage = function (subject, text, receiver) {	
 	var mailOptions = {
 		from: 'Countdown Mailer <' + this._sender + '>',
-		to: _receivers,
+		to: receiver,
 		subject: subject,
 		text: text
 	};
