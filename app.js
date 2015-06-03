@@ -11,10 +11,24 @@ var body = "Morning all! \r\n\n" +
 
 var receivers = require('./ReceiversRepo.js').getAll().receivers;
 
-// Send the email
-var Mailer = require('./Emailer.js');
-var mailer = new Mailer("example@123.co.uk", "password");
+var solver = require('./Solver.js');
 
-receivers.forEach(function(receiver) {
-	mailer.sendMessage(subject, body, receiver);
-});
+puzzle = { numbers: [75, 5, 50, 5, 10], target:2350}
+
+var solution = solver.solve(puzzle);
+
+console.log(puzzle.numbers, puzzle.target);
+console.log(solution);
+
+if(solution == undefined)
+	console.log("Could not find a path");
+else
+	console.log("Found a path!");
+
+// Send the email
+//var Mailer = require('./Emailer.js');
+//var mailer = new Mailer("username", "password");
+
+//receivers.forEach(function(receiver) {
+//	mailer.sendMessage(subject, body, receiver);
+//});
