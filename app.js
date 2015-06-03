@@ -13,7 +13,7 @@ var receivers = require('./ReceiversRepo.js').getAll().receivers;
 
 // Send the email
 var Mailer = require('./Emailer.js');
-var mailer = new Mailer("billingsleyjoseph@gmail.com", "maximillion93");
+var mailer = new Mailer("example@123.co.uk", "password");
 
 receivers.forEach(function(receiver) {
 	mailer.sendMessage(subject, body, receiver);
