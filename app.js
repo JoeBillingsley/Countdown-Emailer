@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Generate the puzzle
 var puzzleGen = require('./Generator.js');
 var puzzle = puzzleGen.generate();
@@ -11,7 +13,7 @@ var receivers = require('./ReceiversRepo.js').getAll().receivers;
 
 // Send the email
 var Mailer = require('./Emailer.js');
-var mailer = new Mailer("username", "password");
+var mailer = new Mailer("example@123.co.uk", "password");
 
 receivers.forEach(function(receiver) {
 	mailer.sendMessage(subject, body, receiver);
