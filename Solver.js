@@ -55,7 +55,7 @@ function applyFunctions(valueOne, numbers, target) {
 	for(var i = 0; i < numbers.size; i++) {
 		
 		var valueTwo = numbers.get(i);
-		numbers = numbers.remove(i);
+		var aNumbers = numbers.remove(i);
 		
 		for(var j = 0; j < funcs.length; j++) {	
 			var func = funcs[j];
@@ -66,9 +66,9 @@ function applyFunctions(valueOne, numbers, target) {
             
 			if(result != false && numbers.size > 0) {
 				
-				var aNumbers = numbers.push(result);
+				var bNumbers = aNumbers.push(result);
 				
-				var recurse = applyAll(aNumbers, target);
+				var recurse = applyAll(bNumbers, target);
 				
 				if(recurse != undefined) {
 					return valueOne + " " + func.operation + " " + recurse;
@@ -92,6 +92,6 @@ module.exports = {
 	solve : function (puzzle) {
 		var numbers = Immutable.List(puzzle.numbers);
 		
-		return something(numbers, puzzle.target);
+		return applyAll(numbers, puzzle.target);
 	}
 }
