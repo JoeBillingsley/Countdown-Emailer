@@ -5,17 +5,17 @@ var puzzleGen = require('./Generator.js');
 var puzzle = puzzleGen.generate();
 
 var solver = require('./Solver.js');
-var solution = solver.solve(puzzle);
 
-var solvable = "no";
+var solution;
 
-if(solution != undefined)
-	solvable = "a";
+while(solution == undefined) {
+	puzzle = puzzleGen.generate();
+	solution = solver.solve(puzzle);
+}
 
 var subject = "Your daily countdown puzzle!";
 var body = "Morning all! \r\n\n" + 
 		   "Today you must try and reach " + puzzle.target + " with the numbers " + puzzle.numbers + ". \r\n" +
-		   "This puzzle has " + solvable + " perfect solution!\r\n\n" +
 		   "Best of luck!";
 
 var receivers = require('./ReceiversRepo.js').getAll().receivers;
