@@ -20,9 +20,12 @@ var body = "Morning all! \r\n\n" +
 
 var receivers = require('./ReceiversRepo.js').getAll().receivers;
 
+// Config contains sensitive information or information that may change on different environments
+var config = require('./config.js');
+
 // Send the email
 var Mailer = require('./Emailer.js');
-var mailer = new Mailer("username", "password");
+var mailer = new Mailer(config.username, config.password);
 
 receivers.forEach(function(receiver) {
 	mailer.sendMessage(subject, body, receiver);
